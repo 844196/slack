@@ -1,6 +1,12 @@
 # Slack
 CLIからSlackへ投稿するやつ
 
+```shell-session
+$ slack post 'ラーメン食べたい'
+$ slack post --username=メモおじさん --icon-emoji=:memo: --channel=#time_ojisan 'これはメモです'
+$ tree | slack post --pre
+```
+
 ## Installation
 ```shell-session
 $ composer global config repositories.844196/slack git https://github.com/844196/slack

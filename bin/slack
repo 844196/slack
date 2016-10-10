@@ -3,7 +3,17 @@
 
 set_time_limit(0);
 
-require dirname(__FILE__) . '/../vendor/autoload.php';
+$autoloadCandidates = [
+	__DIR__ . '/../vendor/autoload.php',
+	__DIR__ . '/../../../autoload.php',
+];
+
+foreach ($autoloadCandidates as $file) {
+	if (file_exists($file)) {
+		require $file;
+		break;
+	}
+}
 
 use App\Command\Commander;
 use Symfony\Component\Console\Application;

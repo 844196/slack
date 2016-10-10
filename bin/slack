@@ -5,9 +5,17 @@ set_time_limit(0);
 
 require dirname(__FILE__) . '/../vendor/autoload.php';
 
-use App\Command\Slack\PostAsBotCommand;
+use App\Command\Commander;
 use Symfony\Component\Console\Application;
 
 $app = new Application();
-$app->add(new PostAsBotCommand());
+$commands = (new Commander())
+	->all(function ($className) {
+		return new $className();
+	});
+
+foreach ($commands as $command) {
+	$app->add($command);
+}
+
 $app->run();
